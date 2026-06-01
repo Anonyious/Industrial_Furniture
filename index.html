@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Design Career Path</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #faf7f2;
+    --warm-white: #f5f0e8;
+    --ink: #1a1612;
+    --muted: #7a6e63;
+    --gold: #c9a84c;
+    --gold-light: #e8d49a;
+    --id-color: #2d5a6b;
+    --id-light: #e8f0f3;
+    --fd-color: #6b3d2d;
+    --fd-light: #f3ebe8;
+    --int-color: #3d5c2d;
+    --int-light: #eaf0e8;
+    --pro: #2d6b3d;
+    --con: #6b2d2d;
+    --pro-bg: #eaf3ec;
+    --con-bg: #f3eaea;
+    --extra: #3d3d6b;
+    --extra-bg: #eaeaf3;
+    --nift: #8b5e3c;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 60px 40px 50px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.2);
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: 30%;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.1);
+  }
+  .header-tag {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    display: block;
+  }
+  .header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 38px;
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .header h1 em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+  .header p {
+    font-size: 13px;
+    color: rgba(250,247,242,0.6);
+    max-width: 420px;
+    line-height: 1.6;
+  }
+  .nift-badge {
+    display: inline-block;
+    margin-top: 20px;
+    background: rgba(201,168,76,0.15);
+    border: 1px solid rgba(201,168,76,0.3);
+    color: var(--gold-light);
+    padding: 6px 14px;
+    font-size: 11px;
+    letter-spacing: 1px;
+    border-radius: 2px;
+  }
+
+  /* NAV TABS */
+  .nav-tabs {
+    display: flex;
+    background: var(--warm-white);
+    border-bottom: 1px solid rgba(26,22,18,0.1);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .nav-tab {
+    padding: 16px 20px;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    color: var(--muted);
+    font-weight: 400;
+  }
+  .nav-tab.active { border-bottom-color: var(--ink); color: var(--ink); }
+  .nav-tab:hover:not(.active) { color: var(--ink); }
+
+  /* SECTIONS */
+  .section { display: none; padding: 0 0 60px; }
+  .section.active { display: block; }
+
+  /* OVERVIEW SECTION */
+  .overview-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .career-card {
+    padding: 32px 28px;
+    border-bottom: 1px solid rgba(26,22,18,0.08);
+    position: relative;
+  }
+  .career-card:last-child { border-bottom: none; }
+  .career-card.id { border-left: 4px solid var(--id-color); }
+  .career-card.fd { border-left: 4px solid var(--fd-color); }
+  .career-card.int { border-left: 4px solid var(--int-color); }
+  .career-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 60px;
+    font-weight: 300;
+    position: absolute;
+    top: 16px; right: 24px;
+    opacity: 0.06;
+    line-height: 1;
+  }
+  .career-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+  .id .career-label { color: var(--id-color); }
+  .fd .career-label { color: var(--fd-color); }
+  .int .career-label { color: var(--int-color); }
+  .career-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 400;
+    margin-bottom: 10px;
+  }
+  .career-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+  .career-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .tag {
+    font-size: 10px;
+    letter-spacing: 0.5px;
+    padding: 4px 10px;
+    border-radius: 2px;
+    font-weight: 400;
+  }
+  .id .tag { background: var(--id-light); color: var(--id-color); }
+  .fd .tag { background: var(--fd-light); color: var(--fd-color); }
+  .int .tag { background: var(--int-light); color: var(--int-color); }
+
+  /* DETAILED PROS/CONS */
+  .field-section {
+    padding: 32px 28px;
+    border-bottom: 1px solid rgba(26,22,18,0.08);
+  }
+  .field-section:last-child { border-bottom: none; }
+  .field-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(26,22,18,0.06);
+  }
+  .field-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .id .field-dot { background: var(--id-color); }
+  .fd .field-dot { background: var(--fd-color); }
+  .int .field-dot { background: var(--int-color); }
+  .field-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+  }
+  .points-block {
+    margin-bottom: 20px;
+  }
+  .points-label {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .points-label.pros { color: var(--pro); }
+  .points-label.cons { color: var(--con); }
+  .points-label.extra { color: var(--extra); }
+  .points-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    opacity: 0.2;
+  }
+  .pros .points-label::after { background: var(--pro); }
+  .cons .points-label::after { background: var(--con); }
+  .extra .points-label::after { background: var(--extra); }
+  .point-item {
+    display: grid;
+    grid-template-columns: 20px 1fr;
+    gap: 10px;
+    margin-bottom: 14px;
+    align-items: start;
+  }
+  .point-icon {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .pros .point-icon { background: var(--pro-bg); color: var(--pro); }
+  .cons .point-icon { background: var(--con-bg); color: var(--con); }
+  .extra .point-icon { background: var(--extra-bg); color: var(--extra); }
+  .point-content {}
+  .point-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+  .point-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* NIFT TRANSITION */
+  .nift-section {
+    padding: 32px 28px;
+  }
+  .nift-header {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 20px 24px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+  }
+  .nift-header h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 4px;
+  }
+  .nift-header p {
+    font-size: 12px;
+    color: rgba(250,247,242,0.6);
+  }
+  .transition-item {
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(26,22,18,0.06);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 14px;
+    align-items: start;
+  }
+  .transition-item:last-child { border-bottom: none; }
+  .t-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 300;
+    color: rgba(26,22,18,0.15);
+    line-height: 1;
+    min-width: 28px;
+  }
+  .t-content h4 {
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+  .t-content p {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .compat-bar {
+    margin-top: 6px;
+    height: 3px;
+    background: rgba(26,22,18,0.08);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .compat-fill {
+    height: 100%;
+    border-radius: 2px;
+  }
+  .high { background: var(--pro); width: 85%; }
+  .med { background: var(--gold); width: 60%; }
+  .low { background: var(--con); width: 35%; }
+
+  /* VERDICT */
+  .verdict-section { padding: 32px 28px; }
+  .verdict-card {
+    border: 1px solid rgba(26,22,18,0.1);
+    padding: 24px;
+    margin-bottom: 16px;
+    border-radius: 4px;
+  }
+  .verdict-rank {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .verdict-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+  .verdict-why {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  .verdict-card.top { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+  .verdict-card.top .verdict-why { color: rgba(250,247,242,0.65); }
+  .final-note {
+    background: rgba(201,168,76,0.08);
+    border-left: 3px solid var(--gold);
+    padding: 16px 20px;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.7;
+    font-style: italic;
+    margin-top: 24px;
+  }
+
+  /* BOTTOM NAV */
+  .bottom-spacer { height: 20px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <span class="header-tag">Career Guide · Design Fields</span>
+  <h1>Choosing Your<br><em>Design Path</em></h1>
+  <p>A detailed breakdown of Industrial Design, Furniture & Freelance Design, and Interior Design — to help you decide what's right for you.</p>
+  <span class="nift-badge">Currently: Accessory Design · NIFT</span>
+</div>
+
+<div class="nav-tabs">
+  <div class="nav-tab active" onclick="showSection('overview')">Overview</div>
+  <div class="nav-tab" onclick="showSection('industrial')">Industrial</div>
+  <div class="nav-tab" onclick="showSection('furniture')">Furniture</div>
+  <div class="nav-tab" onclick="showSection('interior')">Interior</div>
+  <div class="nav-tab" onclick="showSection('nift')">From NIFT</div>
+  <div class="nav-tab" onclick="showSection('verdict')">Verdict</div>
+</div>
+
+<!-- OVERVIEW -->
+<div class="section active" id="overview">
+  <div class="overview-grid">
+
+    <div class="career-card id">
+      <div class="career-num">01</div>
+      <div class="career-label">Option 1</div>
+      <div class="career-title">Industrial Design</div>
+      <div class="career-desc">The broadest design field. Industrial designers create physical products — from medical devices and electronics to kitchenware and vehicles. It blends engineering thinking with aesthetics. Globally in-demand, but requires strong technical skills and often a formal degree.</div>
+      <div class="career-tags">
+        <span class="tag">Product Design</span>
+        <span class="tag">3D Modelling</span>
+        <span class="tag">R&D</span>
+        <span class="tag">Global Market</span>
+        <span class="tag">High Salary</span>
+      </div>
+    </div>
+
+    <div class="career-card fd">
+      <div class="career-num">02</div>
+      <div class="career-label">Option 2</div>
+      <div class="career-title">Furniture & Freelance Design</div>
+      <div class="career-desc">A focused sub-field that combines material knowledge, craft, and aesthetics to design functional furniture and decor pieces. Freelancing here means direct client work — bespoke pieces, collections, or commercial furniture. Lower income ceiling but more creative autonomy.</div>
+      <div class="career-tags">
+        <span class="tag">Material Knowledge</span>
+        <span class="tag">Bespoke Work</span>
+        <span class="tag">Aesthetic Focus</span>
+        <span class="tag">Client-Direct</span>
+      </div>
+    </div>
+
+    <div class="career-card int">
+      <div class="career-num">03</div>
+      <div class="career-label">Option 3</div>
+      <div class="career-title">Interior Design</div>
+      <div class="career-desc">Designing indoor spaces — residential, commercial, or hospitality. High freelance and business potential. It connects to architecture, styling, and project management. As a fresher from a non-interior background, there's a learning curve, but it's the most accessible field for building your own brand or studio.</div>
+      <div class="career-tags">
+        <span class="tag">Freelance Ready</span>
+        <span class="tag">Business Potential</span>
+        <span class="tag">Residential + Commercial</span>
+        <span class="tag">Visual Styling</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- INDUSTRIAL DESIGN -->
+<div class="section" id="industrial">
+  <div class="field-section id">
+    <div class="field-header id">
+      <div class="field-dot"></div>
+      <div class="field-name">Industrial Design — Full Breakdown</div>
+    </div>
+
+    <div class="points-block pros">
+      <div class="points-label pros">✦ Pros</div>
+
+      <div class="point-item">
+        <div class="point-icon">↑</div>
+        <div class="point-content">
+          <div class="point-title">Excellent Global Pay</div>
+          <div class="point-desc">Industrial designers are among the highest-paid design professionals worldwide. In India, senior roles at companies like Tata, Mahindra, or design consultancies pay ₹12–30 LPA. Globally (US, Europe), salaries can reach $70,000–$120,000/year. The field genuinely rewards specialisation.</div>
+        </div>
+      </div>
+
+      <div class="point-item">
+        <div class="point-icon">↑</div>
+        <div class="point-content">
+          <div class="point-title">Deep Creative + Analytical Thinking</div>
+          <div class="point-desc">You don't just make things look good — you solve problems. Industrial design trains you to think about ergonomics, manufacturing constraints, user behaviour, and sustainability simultaneously. It sharpens both the right brain (aesthetics) and left brain (engineering logic).</div>
+        </div>
+      </div>
+
+      <div class="point-item">
+        <div class="point-icon">↑</div>
+        <div class="point-content">
+          <div class="point-title">3D Rendering & Product Visualisation</div>
+          <div class="point-desc">Skills in tools like Rhino, SolidWorks, KeyShot, or Fusion 360 are valuable across industries. These skills are transferable to automotive, consumer electronics, medical devices, and luxury goods — keeping you versatile across sectors.</div>
+        </div>
+      </div>
+
+      <div class="point-item">
+        <div class="point-icon">↑</div>
+        <div class="point-content">
+          <div class="point-title">NIFT Accessory Design Has Strong Overlap</div>
+          <div class="point-desc">Product thinking, material understanding, form development, and user-centric design — all skills taught in accessory design — directly apply to industrial design. The transition is more natural than it appears.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="points-block cons">
+      <div class="points-label cons">✦ Cons</div>
+
+      <div class="point-item">
+        <div class="point-icon">↓</div>
+        <div class="point-content">
+          <div class="point-title">Knowledge Gap is Real</div>
+          <div class="point-desc">Industrial design involves understanding manufacturing processes (injection moulding, CNC, casting), material science, and engineering principles. Without formal ID training, breaking into top roles is difficult. You'd likely need a bridge course, masters, or portfolio-building period.</div>
+        </div>
+      </div>
+
+      <div class="point-item">
+        <div class="point-icon">↓</div>
+        <div class="point-content">
+          <div class="point-title">Educational Degree Matters A Lot</div>
+          <div class="point-desc">Unlike interior design where a portfolio can open doors, most top industrial design companies require a formal degree — NID, IDC IIT Bombay, Srishti, or international schools. A NIFT degree helps but doesn't fully substitute.</div>
+        </div>
+      </div>
+
+      <div class="point-item">
+        <div class="point-icon">↓</div>
+        <div class="point-content">
+          <div class="point-title">Portfolio Can't Be Built From Scratch Easily</div>
+          <div class="point-desc">Unlike graphic design or interior styling, you can't easily build a self-taught industrial design portfolio without access to prototyping tools, workshops, and software. Projects require resources, not just creativity.</div>
+        </div>
+      </div>
+
+      <div class="point-item">
+        <div class="point-icon">↓</div>
+        <div class="point-content">
+          <div class="point-title">Very Limited Freelancing as a Fresher</div>
+          <div class="point-desc">Freelance industrial design projects (product concept work, consulting) typically go to experienced designers with 5+ years of proven work. Starting out independently is extremely difficult — you almost always need to begin in a company or studio first.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="points-block extra">
+      <div class="points-label extra">✦ Extra Points to Consider</div>
+
+      <div class="point-item">
+        <div class="point-icon">+</div>
+        <div class="point-content">
+          <div class="point-title">Accessory Design IS a Form of Industrial Design</div>
+          <div class="point-desc">Handbags, jewellery, footwear — these are products. The process of designing them (sketching, prototyping, material selection, production) mirrors industrial design. She's already doing it — just in the fashion context. This can be leveraged smartly.</div>
+        </div>
+      </div>
+
+      <div class="point-item">
+        <div class="point-icon">+</div>
+        <div class="point-content">
+          <div class="point-title">Consider Product Design as a Middle Path</div>
+          <div class="point-desc">Product Design is a softer version of Industrial Design that focuses more on consumer goods, lifestyle products, and furniture — less engineering-heavy. Brands like Pepperfry, Godrej, Fabindia, or DY Works hire product designers. This might be more accessible from a NIFT background.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FURNITURE DESIGN -->
+<div class="section" id="furniture">
+  <div class="field-section fd">
+    <div class="field-header fd">
+      <div class="field-dot"></div>
+      <div class="field-name">Furniture & Freelance Design — Full Breakdown</div>
+    </div>
+
+    <div class="points-block pros">
+      <div class="points-label pros">✦ Pros</div>
+
+      <div class="point-item">
+        <div class="point-icon">↑</div>
+        <div class="point-content">
+          <div class="point-title">Strong Aesthetic Sensibility Required</div>
+          <div class="point-desc">Furniture design is about proportion, material beauty, and function meeting form. If she has a strong visual sense (which NIFT trains well), this is a field where that sensibility directly translates into the quality of work and client trust.</div>
+        </div>
+      </div>
+
+      <div class="point-item">
+        <div class="point-icon">↑</div>
+        <div class="point-content">
+          <div class="point-title">Deep Material Knowledge = Major Advantage</div>
+          <div class="point-desc">Understanding woods, metals, upholstery fabrics, finishes, and joinery gives designers credibility with craftsmen and clients. NIFT's material studies overlap meaningfully here. This expertise can differentiate her from generic decorators.</div>
+        </div>
+      </div>
+
+      <div class="point-item">
+        <div class="point-icon">↑</div>
+        <div class="point-content">
+          <div class="point-title">Freelancing is Feasible from Early On</div>
+          <div class="point-desc">Unlike industrial design, furniture design freelancing is accessible. With a few well-photographed pieces, she could take on bespoke furniture commissions, collaborate with carpenters, or supply to boutique retailers. The barrier to entry is lower.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="points-block cons">
+      <div class="points-label cons">✦ Cons</div>
+
+      <div class="point-item">
+        <div class="point-icon">↓</div>
+        <div class="point-content">
+          <div class="point-title">Lower Income Ceiling</div>
+          <div class="point-desc">Standalone furniture designers in India rarely reach high pay unless they establish a strong brand, export-oriented business, or move into luxury/contract furniture. Average freelance income is modest — ₹3–8 LPA for most. It takes years to build a premium positioning.</div>
+        </div>
+      </div>
+
+      <div class="point-item">
+        <div class="point-icon">↓</div>
+        <div class="point-content">
+          <div class="point-title">Less Experimental Scope</div>
+          <div class="point-desc">Most furniture clients want functional, safe, reproducible pieces — not avant-garde experiments. Creative risk-taking is limited by client budgets and production constraints, especially in the mid-market segment.</div>
+        </div>
+      </div>
+
+      <div class="point-item">
+        <div class="point-icon">↓</div>
+        <div class="point-content">
+          <div class="point-title">Slower Career Growth as a Solo Freelancer</div>
+          <div class="point-desc">Without institutional backing, growth depends entirely on word-of-mouth, Instagram presence, and networking. Building a sustainable income stream takes 2–4 years of consistent work. It's a slower burn compared to employment-based design careers.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="points-block extra">
+      <div class="points-label extra">✦ Extra Points to Consider</div>
+
+      <div class="point-item">
+        <div class="point-icon">+</div>
+        <div class="point-content">
+          <div class="point-title">Furniture + Interior = Powerful Combo</div>
+          <div class="point-desc">Many successful interior designers also design custom furniture for their projects. If she leans toward interior design, furniture design knowledge becomes a premium differentiator — giving her a richer offering to clients ("I design the space AND the furniture in it").</div>
+        </div>
+      </div>
+
+      <div class="point-item">
+        <div class="point-icon">+</div>
+        <div class="point-content">
+          <div class="point-title">Instagram & Digital Portfolio Can Build a Brand Fast</div>
+          <div class="point-desc">Furniture and home decor content performs very well on Instagram and Pinterest. A well-documented process — material selection, workshop visits, final photography — can build a following and attract clients organically. Low marketing cost, high visual impact.</div>
+        </div>
+      </div>
+
+      <div class="point-item">
+        <div class="point-icon">+</div>
+        <div class="point-content">
+          <div class="point-title">Export Market is Lucrative</div>
+          <div class="point-desc">India exports significant furniture to Europe and the US. Designers who understand both Indian craft traditions and international aesthetics can work with exporters like those in Jodhpur, Saharanpur, or Rajkot. This is an underexplored path with strong income potential.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- INTERIOR DESIGN -->
+<div class="section" id="interior">
+  <div class="field-section int">
+    <div class="field-header int">
+      <div class="field-dot"></div>
+      <div class="field-name">Interior Design — Full Breakdown</div>
+    </div>
+
+    <div class="points-block pros">
+      <div class="points-label pros">✦ Pros</div>
+
+      <div class="point-item">
+        <div class="point-icon">↑</div>
+        <div class="point-content">
+          <div class="point-title">Freelancing is Very Accessible</div>
+          <div class="point-desc">Interior design is one of the easiest design fields to freelance in, even as a fresher. Residential projects — a friend's home, a relative's office — can be your first paid projects. Word of mouth spreads fast. You can start with small budgets and grow organically.</div>
+        </div>
+      </div>
+
+      <div class="point-item">
+        <div class="point-icon">↑</div>
+        <div class="point-content">
+          <div class="point-title">Enormous Business Potential</div>
+          <div class="point-desc">Interior design studios can be extremely profitable. Once you have 3–5 strong project photographs, referrals and Instagram leads can sustain a full business. India's real estate boom means constant demand for residential and commercial interior work. Top studios earn ₹50L–several crores annually.</div>
+        </div>
+      </div>
+
+      <div class="point-item">
+        <div class="point-icon">↑</div>
+        <div class="point-content">
+          <div class="point-title">Highly Visual — Great for NIFT Graduates</div>
+          <div class="point-desc">Interior design is about colour, texture, proportion, mood, and storytelling through space — all skills cultivated at NIFT. The aesthetic training from accessory design is directly applicable to selecting materials, creating concept boards, and styling spaces.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="points-block cons">
+      <div class="points-label cons">✦ Cons</div>
+
+      <div class="point-item">
+        <div class="point-icon">↓</div>
+        <div class="point-content">
+          <div class="point-title">No Real Experience Yet</div>
+          <div class="point-desc">Interior design projects involve contractor management, site supervision, AutoCAD drawings, material procurement, and client negotiations. With no hands-on project experience, the first few projects will have a steep learning curve. Mistakes on-site can be costly and stressful.</div>
+        </div>
+      </div>
+
+      <div class="point-item">
+        <div class="point-icon">↓</div>
+        <div class="point-content">
+          <div class="point-title">Lower Pay as a Fresher</div>
+          <div class="point-desc">Junior interior designers at firms earn ₹2–4 LPA in most Indian cities. Freelancing independently as a fresher often means undercharging to get experience. It takes 2–3 years before you can command ₹1.5–3 lakh per project fees independently.</div>
+        </div>
+      </div>
+
+      <div class="point-item">
+        <div class="point-icon">↓</div>
+        <div class="point-content">
+          <div class="point-title">Technical Knowledge Gap</div>
+          <div class="point-desc">Interior design uses specific technical vocabulary — lux levels, load-bearing walls, false ceiling structures, plumbing constraints, electrical layouts, DXF files. Without a formal interior design course, she'll need to self-learn these or work under a mentor first.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="points-block extra">
+      <div class="points-label extra">✦ Extra Points to Consider</div>
+
+      <div class="point-item">
+        <div class="point-icon">+</div>
+        <div class="point-content">
+          <div class="point-title">A Short Bridge Course Is All You Need</div>
+          <div class="point-desc">Unlike industrial design (which needs a full degree to compete), interior design can be entered with a 6–12 month certificate course from institutes like ISDI, JD Institute, CSIID, or online platforms like Coursera. Combined with a NIFT aesthetic foundation, this creates a very strong profile.</div>
+        </div>
+      </div>
+
+      <div class="point-item">
+        <div class="point-icon">+</div>
+        <div class="point-content">
+          <div class="point-title">Online Presence = Direct Client Pipeline</div>
+          <div class="point-desc">Interior design content on Instagram, Houzz, and Pinterest consistently gets high engagement. Documenting even one or two styled spaces builds a credible portfolio that clients can browse. NIFT-trained designers tend to produce more curated, thoughtful work than average.</div>
+        </div>
+      </div>
+
+      <div class="point-item">
+        <div class="point-icon">+</div>
+        <div class="point-content">
+          <div class="point-title">Luxury & Hospitality = High Ticket Projects</div>
+          <div class="point-desc">The upper segment of interior design — luxury residential, boutique hotels, premium restaurants — is extremely lucrative. Once established, a single high-end project can pay ₹5–15 lakh in fees. This segment also values strong aesthetic taste over strict technical pedigree.</div>
+        </div>
+      </div>
+
+      <div class="point-item">
+        <div class="point-icon">+</div>
+        <div class="point-content">
+          <div class="point-title">Accessory Design Adds Rare Depth</div>
+          <div class="point-desc">Few interior designers understand materials, craft production, and accessory styling the way a NIFT graduate does. She could create a niche as an interior designer who also designs and sources custom accessories — cushion covers, decorative objects, lighting shades — giving clients a completely curated home.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FROM NIFT -->
+<div class="section" id="nift">
+  <div class="nift-section">
+    <div class="nift-header">
+      <h3>Coming from NIFT Accessory Design</h3>
+      <p>How compatible is each path with her current degree and skills?</p>
+    </div>
+
+    <div class="transition-item">
+      <div class="t-num">01</div>
+      <div class="t-content">
+        <h4>Interior Design — Strongest Transition</h4>
+        <p>NIFT's training in aesthetics, material palettes, concept boards, and visual communication maps directly onto interior design. The missing technical pieces (AutoCAD, site management) can be learned quickly through a short course or working under a senior designer for 6–12 months.</p>
+        <div class="compat-bar"><div class="compat-fill high"></div></div>
+      </div>
+    </div>
+
+    <div class="transition-item">
+      <div class="t-num">02</div>
+      <div class="t-content">
+        <h4>Furniture / Freelance Design — Medium Transition</h4>
+        <p>Material knowledge from NIFT is relevant. However, furniture design needs understanding of joinery, structural integrity, and production constraints that aren't covered in accessory design. Manageable with self-study or a short workshop, but requires effort.</p>
+        <div class="compat-bar"><div class="compat-fill med"></div></div>
+      </div>
+    </div>
+
+    <div class="transition-item">
+      <div class="t-num">03</div>
+      <div class="t-content">
+        <h4>Industrial Design — Hardest Transition</h4>
+        <p>The industrial design field respects formal degree pedigree (NID, IDC IIT) heavily. A NIFT accessory graduate would need significant upskilling — 3D CAD tools, manufacturing knowledge, engineering fundamentals — and likely a postgraduate degree to be competitive.</p>
+        <div class="compat-bar"><div class="compat-fill low"></div></div>
+      </div>
+    </div>
+
+    <div class="transition-item">
+      <div class="t-num">04</div>
+      <div class="t-content">
+        <h4>The Hidden Fourth Option: Stay in Accessories — Go Luxury</h4>
+        <p>This is worth considering: the accessories industry (leather goods, jewellery, footwear) has a thriving luxury segment globally. NIFT Accessory Design is one of the most respected credentials for working with brands like Hidesign, Titan, Tanishq, or even international luxury brands. Building a career or freelance label in accessories may be the path of least resistance with highest ceiling.</p>
+        <div class="compat-bar"><div class="compat-fill high"></div></div>
+      </div>
+    </div>
+
+    <div class="transition-item">
+      <div class="t-num">05</div>
+      <div class="t-content">
+        <h4>Key Skills to Build Right Now (Any Path)</h4>
+        <p>AutoCAD or SketchUp (interior/furniture), Procreate or Adobe Illustrator (visualization), a well-photographed portfolio of any design work, basic project costing knowledge, and 1–2 real executed projects (even personal or pro-bono) will dramatically improve her positioning across all three fields.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- VERDICT -->
+<div class="section" id="verdict">
+  <div class="verdict-section">
+
+    <div class="verdict-card top">
+      <div class="verdict-rank">Best Fit · Recommended</div>
+      <div class="verdict-title">Interior Design</div>
+      <div class="verdict-why">The easiest entry point from NIFT, the highest freelance and business potential, and the strongest match for her visual training. With a 6-month certificate course to fill in technical gaps, she could be taking on paid projects within a year. The luxury end of this market also values taste over technical degrees — exactly where a NIFT graduate excels.</div>
+    </div>
+
+    <div class="verdict-card">
+      <div class="verdict-rank">Good Alternative</div>
+      <div class="verdict-title">Furniture & Freelance Design</div>
+      <div class="verdict-why">Best pursued alongside interior design, not instead of it. Building custom furniture knowledge as a specialty within an interior design practice creates a premium, differentiated service. Standalone furniture freelancing has a lower income ceiling and slower growth.</div>
+    </div>
+
+    <div class="verdict-card">
+      <div class="verdict-rank">Longer Road</div>
+      <div class="verdict-title">Industrial Design</div>
+      <div class="verdict-why">High earning potential and globally respected, but requires significant investment in upskilling, potentially another degree, and years of experience before freelancing is viable. Best pursued if she's deeply passionate about product design and willing to put in 2–3 years of structured learning first.</div>
+    </div>
+
+    <div class="final-note">
+      The most important thing isn't picking the "best" field — it's picking the one she'll still love working in at 10 years. She should ask herself: does she want to walk into spaces and make them beautiful, hold a product she designed, or craft a singular object? That instinct matters more than any pros and cons list.
+    </div>
+
+    <div class="bottom-spacer"></div>
+  </div>
+</div>
+
+<script>
+  function showSection(id) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    const tabs = ['overview','industrial','furniture','interior','nift','verdict'];
+    document.querySelectorAll('.nav-tab')[tabs.indexOf(id)].classList.add('active');
+    window.scrollTo(0, 0);
+  }
+</script>
+</body>
+</html>
